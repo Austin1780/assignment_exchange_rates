@@ -1,48 +1,38 @@
-import React, { Component } from 'react';
-import App from '../components/App';
-
+import React, { Component } from "react";
+import App from "../components/App";
 
 class AppContainer extends Component {
   constructor() {
     super();
-
-    // Initialize users in state as an empty array and
-    // set isFetching to false.
     this.state = {
-      users: [],
+      currencies: [],
       isFetching: false,
       error: null
     };
   }
 
-componentDidMount() {
-    // Before performing the fetch, set isFetching to true
+  componentDidMount() {
     this.setState({ isFetching: true });
-
-    // After component mounts, call the API to get the
-    // users, then update state which triggers re-render.
-    // Add a delay to the URL and reset isFetching upon
-    // completion of the request.
-    fetch("https://reqres.in/api/users?delay=1")
+    fetch("https://api.fixer.io/latest")
       .then(response => response.json())
       .then(json => {
+        let currencies = [];
+        Object.keys(json.rates).forEach(key => {
+          currencies.push({ abbr: key, rate: json.rates[key] });
+        });
         this.setState({
-          users: json.data,
+          currencies: currencies,
           isFetching: false
         });
       });
   }
 
-render() {
-    return (
-      <App
-        onAddUser={this.onAddUser}
-        onDeleteUser={this.onDeleteUser}
-        onEditForm={this.onEditForm}
-        {...this.state}
+  currencySelect = e => {
+    //  https://api.fixer.io/latest?base=USD
+  };
 
-      />
-    );
+  render() {
+    return <App {...this.state} />;
   }
 }
 
