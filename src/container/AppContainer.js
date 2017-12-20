@@ -5,7 +5,7 @@ class AppContainer extends Component {
   constructor() {
     super();
     this.state = {
-      base:"EUR",
+      base: "EUR",
       currencies: [],
       isFetching: false,
       error: null
@@ -28,25 +28,21 @@ class AppContainer extends Component {
       });
   }
 
-  currencySelect = async (e) => {
-    //  https://api.fixer.io/latest?base=USD
+  currencySelect = async e => {
     let base = e.target.value;
-    try{
-      this.setState({isFetching:true});
+    try {
+      this.setState({ isFetching: true });
       let data = await fetch(`https://api.fixer.io/latest?base=${base}`);
-      let json=data.json();
+      let json = await data.json();
       let currencies = [];
       console.log(json);
-        Object.keys(json.rates).forEach(key => {
-          currencies.push({ abbr: key, rate: json.rates[key] });
-        });
-      this.setState({currencies:currencies, base:base, isFetching:false})
-
-    }catch(e){
-      console.error(e)
-    };
-
-
+      Object.keys(json.rates).forEach(key => {
+        currencies.push({ abbr: key, rate: json.rates[key] });
+      });
+      this.setState({ currencies: currencies, base: base, isFetching: false });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   render() {

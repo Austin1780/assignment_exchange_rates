@@ -12,15 +12,17 @@ const CurrencyTable = ({ currencies, isFetching }) => {
   return isFetching ? (
     <p>Loading...</p>
   ) : (
-    <table className="table table-striped table-dark">
-      <thead>
-        <tr>
-          <th scope="col">Currency Name</th>
-          <th scope="col">Exchange Rate</th>
-        </tr>
-      </thead>
-      <tbody>{currenciesList}</tbody>
-    </table>
+    <div className="col-sm-6 col-sm-offset-3">
+      <table className="table table-striped table-dark table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Currency Name</th>
+            <th scope="col">Exchange Rate</th>
+          </tr>
+        </thead>
+        <tbody>{currenciesList}</tbody>
+      </table>
+    </div>
   );
 };
 
