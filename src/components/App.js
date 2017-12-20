@@ -4,7 +4,7 @@ import "../App.css";
 import CurrencyTable from "./CurrencyTable";
 import CurrencySelector from "./CurrencySelector";
 
-const App = ({ currencies, isFetching, error }) => {
+const App = ({ currencies, isFetching, error, currencySelect }) => {
   let abbr = currencies.map(currency => {
     return currency.abbr;
   });
@@ -16,7 +16,7 @@ const App = ({ currencies, isFetching, error }) => {
           Welcome to Currency Exchange <br />£££ --> $$$
         </h1>
       </header>
-      <CurrencySelector abbr={abbr} />
+      <CurrencySelector abbr={abbr} currencySelect={currencySelect} />
       <CurrencyTable currencies={currencies} isFetching={isFetching} />
     </div>
   );

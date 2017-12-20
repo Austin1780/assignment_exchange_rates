@@ -12,7 +12,7 @@ const CurrencyTable = ({ currencies, isFetching }) => {
   return isFetching ? (
     <p>Loading...</p>
   ) : (
-    <table class="table table-striped table-dark">
+    <table className="table table-striped table-dark">
       <thead>
         <tr>
           <th scope="col">Currency Name</th>
